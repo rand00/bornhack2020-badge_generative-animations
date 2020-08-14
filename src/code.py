@@ -31,169 +31,66 @@ frame = 0  # start with frame 0
 
 display.frame(frame, show=False)
 display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
+#display.fill(0)
+#display2.fill(1)
+display.pixel(0, 0, 30)
 # < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
+display2.pixel(0, 0, 30)
 # < goto make a lot of these, depending on display w and h
 display.frame(frame, show=True)
 display2.frame(frame, show=True)
+time.sleep(1)
+#> setting pixel to zero again
+display.pixel(0, 0, 0)
+display2.pixel(0, 0, 0)
 frame = 0 if frame else 1
 
 display.frame(frame, show=False)
 display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
+#display.fill(0)
+#display2.fill(1)
+display.pixel(0, 1, 30)
 # < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
+display2.pixel(0, 1, 30)
 # < goto make a lot of these, depending on display w and h
 display.frame(frame, show=True)
 display2.frame(frame, show=True)
+time.sleep(1)
+#> setting pixel to zero again
+display.pixel(0, 1, 0)
+display2.pixel(0, 1, 0)
 frame = 0 if frame else 1
 
 display.frame(frame, show=False)
 display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
+#display.fill(0)
+#display2.fill(1)
+display.pixel(1, 0, 30)
 # < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
+display2.pixel(1, 0, 30)
 # < goto make a lot of these, depending on display w and h
 display.frame(frame, show=True)
 display2.frame(frame, show=True)
+time.sleep(1)
+#> setting pixel to zero again
+display.pixel(1, 0, 0)
+display2.pixel(1, 0, 0)
 frame = 0 if frame else 1
 
 display.frame(frame, show=False)
 display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
+#display.fill(0)
+#display2.fill(1)
+display.pixel(1, 1, 30)
 # < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
+display2.pixel(1, 1, 30)
 # < goto make a lot of these, depending on display w and h
 display.frame(frame, show=True)
 display2.frame(frame, show=True)
+time.sleep(1)
+#> setting pixel to zero again
+display.pixel(1, 1, 0)
+display2.pixel(1, 1, 0)
 frame = 0 if frame else 1
 
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(1)
-display2.fill(1)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-display.fill(0)
-display2.fill(0)
-# display.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-# display2.pixel(8, 4, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-frame = 0 if frame else 1
 
