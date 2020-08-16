@@ -31,11 +31,11 @@ module Pixel = struct
 
   let turned_on ~chosen_display ~x ~y ~power =
     if power = 0 then [] else 
-      [ sp "%d %d %d %d)" (display chosen_display) x y power ]
+      [ sp "%d %d %d %d" (display chosen_display) x y power ]
 
   let turned_off ~chosen_display ~x ~y ~power =
     if power = 0 then [] else
-      [ sp "%d %d %d 0)" (display chosen_display) x y ]
+      [ sp "%d %d %d 0" (display chosen_display) x y ]
 
 end
 
@@ -45,7 +45,7 @@ let pixels_reset pixels = pixels |> pixels_aux ~f:Pixel.turned_off
 
 let frame frame = String.concat "\n" @@ List.flatten [
   frame.Frame.pixels |> pixels;
-  [ sp "%f" frame.Frame.delay ];
+  [ sp "%.2f" frame.Frame.delay ];
   frame.Frame.pixels |> pixels_reset;
 ]
 

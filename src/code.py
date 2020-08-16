@@ -17,23 +17,16 @@ sdb.value = True
 display = adafruit_is31fl3731.Matrix(i2c, address=0x74)
 display2 = adafruit_is31fl3731.Matrix(i2c, address=0x77)
 
-# text_to_show = "BornHack 2020 - make clean"
- 
-# Create a framebuffer for our display
-# buf = bytearray(64)  # 2 bytes tall x 32 wide = 64 bytes (9 bits is 2 bytes)
-# fb = adafruit_framebuf.FrameBuffer(
-#     buf, display.width*2, display.height, adafruit_framebuf.MVLSB
-# )
-
 generated_file = open("generated.txt", "r")
 
-frame = 0  # start with frame 0
+frame = 0
 display.frame(frame, show=False)
 display2.frame(frame, show=False)
 
 while True:
     generated_line = generated_file.readline()
-    if generated_line == '':
+    if generated_line.strip() == '':
+        print('Frame switch: ' + str(frame))
         display.frame(frame, show=True)
         display2.frame(frame, show=True)
         frame = 0 if frame else 1
@@ -41,7 +34,7 @@ while True:
         display2.frame(frame, show=False)
     else:
         splits = generated_line.split(' ')
-        if splits.length > 1:
+        if len(splits) > 1:
             display_choice = int(splits[0])
             x = int(splits[1])
             y = int(splits[2])
@@ -49,8 +42,9 @@ while True:
             chosen_display = display if display_choice == 0 else display2
             chosen_display.pixel(x, y, power)
         else:
-            delay = float(splits[0])
+            #print('delay = \'' + generated_line.strip() + '\'')
+            delay = float(generated_line.strip())
             time.sleep(delay)
 
             
-        
+
