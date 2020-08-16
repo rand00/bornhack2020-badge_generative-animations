@@ -17,80 +17,34 @@ sdb.value = True
 display = adafruit_is31fl3731.Matrix(i2c, address=0x74)
 display2 = adafruit_is31fl3731.Matrix(i2c, address=0x77)
 
-text_to_show = "BornHack 2020 - make clean"
+# text_to_show = "BornHack 2020 - make clean"
  
 # Create a framebuffer for our display
-buf = bytearray(64)  # 2 bytes tall x 32 wide = 64 bytes (9 bits is 2 bytes)
-fb = adafruit_framebuf.FrameBuffer(
-    buf, display.width*2, display.height, adafruit_framebuf.MVLSB
-)
+# buf = bytearray(64)  # 2 bytes tall x 32 wide = 64 bytes (9 bits is 2 bytes)
+# fb = adafruit_framebuf.FrameBuffer(
+#     buf, display.width*2, display.height, adafruit_framebuf.MVLSB
+# )
 
-# > START CODE TO GENERATE
+generated_file = open("generated.txt", "r")
 
 frame = 0  # start with frame 0
-
 display.frame(frame, show=False)
 display2.frame(frame, show=False)
-#display.fill(0)
-#display2.fill(1)
-display.pixel(0, 0, 30)
-# < goto make a lot of these, depending on display w and h
-display2.pixel(0, 0, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-time.sleep(1)
-#> setting pixel to zero again
-display.pixel(0, 0, 0)
-display2.pixel(0, 0, 0)
-frame = 0 if frame else 1
 
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-#display.fill(0)
-#display2.fill(1)
-display.pixel(0, 1, 30)
-# < goto make a lot of these, depending on display w and h
-display2.pixel(0, 1, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-time.sleep(1)
-#> setting pixel to zero again
-display.pixel(0, 1, 0)
-display2.pixel(0, 1, 0)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-#display.fill(0)
-#display2.fill(1)
-display.pixel(1, 0, 30)
-# < goto make a lot of these, depending on display w and h
-display2.pixel(1, 0, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-time.sleep(1)
-#> setting pixel to zero again
-display.pixel(1, 0, 0)
-display2.pixel(1, 0, 0)
-frame = 0 if frame else 1
-
-display.frame(frame, show=False)
-display2.frame(frame, show=False)
-#display.fill(0)
-#display2.fill(1)
-display.pixel(1, 1, 30)
-# < goto make a lot of these, depending on display w and h
-display2.pixel(1, 1, 30)
-# < goto make a lot of these, depending on display w and h
-display.frame(frame, show=True)
-display2.frame(frame, show=True)
-time.sleep(1)
-#> setting pixel to zero again
-display.pixel(1, 1, 0)
-display2.pixel(1, 1, 0)
-frame = 0 if frame else 1
-
-
+while True:
+    generated_line = generated_file.readline()
+    if generated_line == '':
+        display.frame(frame, show=True)
+        display2.frame(frame, show=True)
+        frame = 0 if frame else 1
+        display.frame(frame, show=False)
+        display2.frame(frame, show=False)
+    else:
+        splits = generated_line.split(' ')
+        display_choice = int(splits[0])
+        x = int(splits[1])
+        y = int(splits[2])
+        power = int(splits[3])
+        chosen_display = display if display_choice == 0 else display2
+        chosen_display.pixel(x, y, power)
+        
