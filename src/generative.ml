@@ -13,5 +13,5 @@ let w, h = 31, 9
 let () =
   Random.self_init ();
   G_line_splitter.frames ~w ~h 
-  |> Generate.code_py 
+  |> Generate.commands
   |> print_endline
