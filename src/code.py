@@ -41,10 +41,16 @@ while True:
         display2.frame(frame, show=False)
     else:
         splits = generated_line.split(' ')
-        display_choice = int(splits[0])
-        x = int(splits[1])
-        y = int(splits[2])
-        power = int(splits[3])
-        chosen_display = display if display_choice == 0 else display2
-        chosen_display.pixel(x, y, power)
+        if splits.length > 1:
+            display_choice = int(splits[0])
+            x = int(splits[1])
+            y = int(splits[2])
+            power = int(splits[3])
+            chosen_display = display if display_choice == 0 else display2
+            chosen_display.pixel(x, y, power)
+        else:
+            delay = float(splits[0])
+            time.sleep(delay)
+
+            
         
