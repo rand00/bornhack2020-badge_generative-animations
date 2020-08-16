@@ -46,7 +46,7 @@ let pixels_reset pixels = pixels |> pixels_aux ~f:Pixel.turned_off
 let frame frame = String.concat "\n" @@ List.flatten [
   frame.Frame.pixels |> pixels;
   [ sp "%.2f" frame.Frame.delay ];
-  frame.Frame.pixels |> pixels_reset;
+  (* frame.Frame.pixels |> pixels_reset; *)
 ]
 
 let commands frames = 
