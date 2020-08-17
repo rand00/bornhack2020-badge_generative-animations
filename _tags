@@ -1,5 +1,5 @@
 true: bin_annot, debug
 <src/**>: include
 
-true: package(containers, rresult, bos)
+true: package(containers, rresult, bos, ppx_deriving.std)
 

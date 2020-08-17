@@ -1,4 +1,4 @@
 S src/
 B _build/src
 
-PKG containers rresult bos
+PKG containers rresult bos ppx_deriving.std
