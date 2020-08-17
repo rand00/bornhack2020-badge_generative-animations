@@ -11,13 +11,12 @@ let pixels_aux ~f pixels =
       let rec aux_y y =
         if y >= h then [] else
           let chosen_display = choose_display ~x ~y ~w ~h in
-          let x, y = match chosen_display with
+          let x', y' = match chosen_display with
             | `Display0 -> x, y
             | `Display1 -> x - (w / 2), y
           in
-          let f = f ~chosen_display in
           let power = pixels.(x).(y) in
-          f ~x ~y ~power @ aux_y (succ y)
+          f ~chosen_display ~x:x' ~y:y' ~power @ aux_y (succ y)
       in
       aux_y 0 @ aux_xy (succ x)
   in
