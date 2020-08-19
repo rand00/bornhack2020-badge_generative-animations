@@ -7,6 +7,7 @@ module Board = struct
     cut_right : float; (*range: [0; 1]*)
     dimension : [ `Vertical | `Horizontal ];
     direction : [ `Up | `Down ];
+    is_new : bool;
   }[@@deriving show]
   
   type t = line list
@@ -50,6 +51,7 @@ module Board = struct
       direction = if Random.bool () then `Up else `Down;
       cut_left = 0.;
       cut_right = 1.;
+      is_new = true;
     } in
     let board' =
       board |> List.fold_left (fun acc line ->
@@ -67,26 +69,32 @@ module Board = struct
     (* Printf.printf "spawning line: %s\n%!" (show_line new_line); *)
     board' @ new_segments
 
-  let line_speed = 0.1
+  let line_speed_y = 1. /. 9. 
+  let line_speed_x = 1. /. 32.
   
   let step_line line =
+    let is_new = false in
+    let line_speed = match line.dimension with
+      | `Vertical -> line_speed_x
+      | `Horizontal -> line_speed_y
+    in
     match line.direction with
     | `Up ->
       let pos = line.pos +. line_speed in
       if pos > 1. then
         let direction = `Down
         and pos = 1. -. (pos -. 1.) in
-        { line with direction; pos }
+        { line with direction; pos; is_new }
       else
-        { line with pos }
+        { line with pos; is_new }
     | `Down ->
       let pos = line.pos -. line_speed in
       if pos < 0. then
         let direction = `Up
         and pos = 1. -. (pos +. 1.) in 
-        { line with direction; pos }
+        { line with direction; pos; is_new }
       else
-        { line with pos }
+        { line with pos; is_new }
   
   let step board = board |> List.map step_line
 
@@ -99,6 +107,7 @@ module Board = struct
       |> max 0
     in
     board |> List.iter (fun line ->
+      let power = if line.is_new then 30 else 2 in
       match line.dimension with
       | `Horizontal ->
         let x_from = line.cut_left *. float w |> restrict ~max_v:w in
@@ -107,7 +116,7 @@ module Board = struct
         (* Printf.printf "to_frame: writing to %d pixels\n%!" (x_to - x_from); *)
         for x = x_from to x_to do
           (* Printf.printf "  -- write pixel %d,%d = %d\n%!" x y 10; *)
-          pixels.(x).(y) <- 10
+          pixels.(x).(y) <- power
         done
       | `Vertical ->
         let y_from = line.cut_left *. float h |> restrict ~max_v:h in
@@ -116,7 +125,7 @@ module Board = struct
         (* Printf.printf "to_frame: writing to %d pixels\n%!" (y_to - y_from); *)
         for y = y_from to y_to do
           (* Printf.printf "  -- write pixel %d,%d = %d\n%!" x y 10; *)
-          pixels.(x).(y) <- 10
+          pixels.(x).(y) <- power
         done
     );
     Frame.{ pixels; delay = 0.0 }
@@ -126,7 +135,7 @@ end
 module Simulate = struct
 
   let spawn_line ~i board =
-    if i mod (Random.int (10 * (i+1)) + 1) = 0 then 
+    if i mod (Random.int (i+1) + 5) = 0 then 
       board |> Board.spawn_line
     else
       board
@@ -134,7 +143,7 @@ module Simulate = struct
 end
 
 let frames ~w ~h =
-  let n_simulations = 200 in
+  let n_simulations = 400 in
   let rec simulate i board =
     (* Printf.printf "frame %d\n%!" i; *)
     if i >= n_simulations then [] else (
