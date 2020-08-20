@@ -107,7 +107,7 @@ module Board = struct
       |> max 0
     in
     board |> List.iter (fun line ->
-      let power = if line.is_new then 30 else 2 in
+      let power = if line.is_new then 30 else 10 in
       match line.dimension with
       | `Horizontal ->
         let x_from = line.cut_left *. float w |> restrict ~max_v:w in
